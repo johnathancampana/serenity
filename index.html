@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Engaged Recovery: A digital companion that fills the gap between therapy sessions for adolescents in recovery.">
-    <title>Engaged Recovery | Daily Recovery Support</title>
+    <meta name="description" content="Engaged Recovery: Building a digital companion to fill the gap between therapy sessions for adolescents. Join the waitlist for our Summer 2026 launch.">
+    <title>Engaged Recovery | Support for the Days Between</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- CSS VARIABLES & RESET --- */
@@ -19,16 +19,18 @@
             --accent-hover: #E07B3A;
             --bg-light: #F9FAFB;
             --bg-white: #FFFFFF;
+            --bg-warm: #FFF9F5; /* Warmer background for new sections */
+            --alert-bg: #FEF2F2; /* For the "Cliff" section */
+            --alert-text: #991B1B;
             --text-dark: #1F2937;
             --text-gray: #4B5563;
             --success-green: #10B981;
-            --warning-yellow: #F59E0B;
             --border-radius: 8px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--bg-white); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--bg-white); overflow-x: hidden; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
@@ -40,33 +42,66 @@
             font-weight: 600; transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent;
             font-size: 1rem; text-align: center;
         }
-        .btn-primary { background-color: var(--accent-color); color: white; }
-        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+        .btn-primary { background-color: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .btn-primary:hover { background-color: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); }
         .btn-secondary { background-color: transparent; border-color: var(--primary-color); color: var(--primary-color); }
         .btn-secondary:hover { background-color: var(--primary-color); color: white; }
-
-        .section-title { text-align: center; font-size: 2.25rem; margin-bottom: 1rem; color: var(--text-dark); }
+        
+        .section-title { text-align: center; font-size: 2.25rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 800; }
         .section-subtitle { text-align: center; max-width: 700px; margin: 0 auto 3rem auto; color: var(--text-gray); font-size: 1.1rem; }
+        
+        .badge-pill {
+            display: inline-block; background: #EEF2FF; color: var(--primary-color); 
+            padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;
+        }
 
         /* --- HERO --- */
-        .hero { padding: 40px 0 80px 0; background: linear-gradient(to bottom right, #f0f9ff, #fff); }
+        .hero { padding: 60px 0 80px 0; background: linear-gradient(to bottom, #f0f9ff 0%, #fff 100%); }
         .brand-header { margin-bottom: 40px; display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .hero-text h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem; color: var(--primary-dark); }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 { font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.5rem; color: var(--primary-dark); letter-spacing: -0.02em; }
         .hero-text p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 2rem; }
-        .hero-buttons { display: flex; gap: 15px; }
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-meta { font-size: 0.85rem; color: #6B7280; margin-top: 15px; font-style: italic; }
+        
+        .hero-image { position: relative; }
         .hero-image img { width: 100%; border-radius: 12px; box-shadow: var(--shadow); }
+        /* Trust Indicators below Hero */
+        .trust-strip { margin-top: 40px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 0.9rem; color: #6B7280; }
+        .trust-item { display: flex; align-items: center; gap: 6px; }
 
-        /* --- PROBLEM --- */
-        .problem { padding: 80px 0; background-color: var(--bg-white); }
-        .stat-card {
-            background-color: #FFF5F5; border-left: 5px solid #E53E3E; padding: 30px;
-            border-radius: var(--border-radius); margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;
+        /* --- THE RECOVERY CLIFF (New Section) --- */
+        .cliff-section { padding: 80px 0; background-color: var(--alert-bg); border-top: 1px solid #FECACA; border-bottom: 1px solid #FECACA; }
+        .cliff-stat { 
+            font-size: 6rem; font-weight: 800; color: #DC2626; line-height: 1; margin-bottom: 10px; 
+            text-align: center; letter-spacing: -0.03em;
         }
-        .stat-card h3 { font-size: 1.5rem; color: #C53030; margin-bottom: 10px; }
-        .stat-item { margin-bottom: 15px; display: flex; gap: 12px; align-items: start; }
+        .cliff-stat-label { text-align: center; font-size: 1.5rem; font-weight: 700; color: #991B1B; margin-bottom: 40px; }
+        
+        .cliff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .cliff-card { background: white; padding: 30px; border-radius: 8px; border-left: 4px solid #DC2626; box-shadow: var(--shadow); }
+        .cliff-card h4 { color: #991B1B; margin-bottom: 10px; font-size: 1.2rem; }
+        
+        /* --- TIMELINE (New Section) --- */
+        .timeline-section { padding: 80px 0; background-color: var(--bg-white); }
+        .timeline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; }
+        /* Connecting line for desktop */
+        .timeline-grid::before {
+            content: ''; position: absolute; top: 40px; left: 15%; right: 15%; height: 2px; 
+            background: #E5E7EB; z-index: 0; display: block;
+        }
+        .timeline-card { 
+            background: white; padding: 20px; text-align: center; z-index: 1; position: relative; 
+        }
+        .timeline-icon { 
+            width: 80px; height: 80px; background: white; border: 2px solid var(--primary-color); color: var(--primary-color);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 2rem; margin: 0 auto 20px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .timeline-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .timeline-card p { font-size: 0.95rem; color: var(--text-gray); }
 
-        /* --- GAPS SECTION (Vertical Calendar) --- */
+        /* --- GAPS SECTION (Visual) --- */
         .gaps-section { padding: 80px 0; background-color: var(--bg-light); }
         .safety-net-container {
             position: relative; background: #F0F9FF; border: 2px solid #0E6BA8; border-radius: 12px;
@@ -96,84 +131,88 @@
         }
         .check-text { font-size: 0.7rem; color: #9CA3AF; text-align: center; }
         
-        /* Mobile Check-in Row (Hidden on Desktop) */
+        /* Mobile Check-in Row */
         .mobile-check-row {
             display: none; align-items: center; gap: 10px; background-color: #FFF4E5; 
             padding: 8px 12px; border-radius: 6px; border: 1px solid #FED7AA; width: 100%; margin-top: 5px;
         }
         .mobile-check-row span { font-size: 0.85rem; color: #9A3412; font-weight: 600; }
 
-        /* --- FEATURES (Hybrid: Split View on Desktop, Tabs on Mobile) --- */
+        /* --- FEATURES --- */
         .features { padding: 80px 0; background-color: var(--bg-white); }
-        
-        /* DESKTOP DEFAULT: No tabs, Grid layout */
         .tab-controls { display: none; } 
-        
-        .split-view {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        
-        .feature-panel {
-            display: block; /* Always show both on desktop */
-            height: 100%;
-        }
-        
+        .split-view { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .feature-panel { display: block; height: 100%; }
         .feature-card-content {
             background: var(--bg-light); padding: 40px; border-radius: 12px; border: 1px solid #E5E7EB; 
-            height: 100%;
+            height: 100%; position: relative;
         }
-        
         .feature-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
         .feature-icon { background: #EEF2FF; padding: 10px; border-radius: 50%; color: var(--primary-color); min-width: 40px; text-align: center; }
         
         .col-teen-style { border-top: 5px solid var(--accent-color); }
         .col-parent-style { border-top: 5px solid var(--primary-color); }
-
-        /* --- TRUST (Compact) --- */
-        .trust { padding: 100px 0; background-color: var(--bg-light); }
-        .badges-grid {
-            display: flex; 
-            justify-content: center; 
-            margin-bottom: 60px; 
-            flex-wrap: nowrap; /* Keep in one row */
-            gap: 40px;
+        
+        .dev-badge {
+            background: #FEF3C7; color: #92400E; padding: 15px; border-radius: 6px; font-size: 0.9rem;
+            margin-top: 20px; display: flex; gap: 10px; align-items: center; border: 1px solid #FCD34D;
         }
-        .badge-compact { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 200px; text-align: center; }
-        .badge-compact .icon { 
-            font-size: 2.5rem; background: #fff; width: 80px; height: 80px; 
-            display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        /* --- FOUNDER STORY (New Section) --- */
+        .founder-story { padding: 80px 0; background-color: var(--bg-warm); }
+        .story-content { max-width: 800px; margin: 0 auto; background: white; padding: 50px; border-radius: 12px; box-shadow: var(--shadow); }
+        .story-text p { margin-bottom: 20px; font-size: 1.1rem; color: #374151; }
+        .signature { margin-top: 30px; font-weight: 700; color: var(--primary-dark); }
+
+        /* --- TRUST / TESTIMONIALS --- */
+        .trust { padding: 80px 0; background-color: var(--bg-light); }
+        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .testimonial-card { background: white; padding: 30px; border-radius: 8px; font-style: italic; box-shadow: var(--shadow); position: relative; }
+        .quote-badge {
+            position: absolute; top: -15px; left: 30px; background: var(--primary-color); color: white;
+            padding: 5px 15px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; font-style: normal;
         }
-        .badge-compact span { font-size: 1rem; font-weight: 700; color: #4B5563; line-height: 1.3; }
 
-        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-card { background: white; padding: 30px; border-radius: 8px; font-style: italic; box-shadow: var(--shadow); }
-
-        /* --- PRICING --- */
+        /* --- PRICING (Founding Family) --- */
         .pricing { padding: 80px 0; background-color: var(--primary-dark); color: white; }
         .pricing .section-title, .pricing .section-subtitle { color: white; }
-        .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+        
         .pricing-card {
             background: white; color: var(--text-dark); padding: 40px; border-radius: 12px;
-            width: 100%; max-width: 350px; text-align: center; display: flex; flex-direction: column; position: relative;
+            width: 100%; max-width: 380px; text-align: center; display: flex; flex-direction: column; position: relative;
         }
         .pricing-card.popular { transform: scale(1.05); border: 4px solid var(--accent-color); }
         .pricing-card .btn { margin-top: auto; }
-        .popular-tag {
-            background: var(--accent-color); color: white; padding: 5px 15px; position: absolute;
-            top: -15px; left: 50%; transform: translateX(-50%); border-radius: 20px; font-size: 0.9rem; font-weight: 700;
-        }
-        .price { font-size: 3rem; font-weight: 700; margin: 20px 0 5px 0; color: var(--primary-color); }
-        .price span { font-size: 1rem; color: var(--text-gray); font-weight: 400; }
-
-        /* --- FAQ & FOOTER --- */
-        .faq { padding: 80px 0; max-width: 800px; margin: 0 auto; }
-        .faq-item { border-bottom: 1px solid #E5E7EB; }
-        .faq-question { padding: 20px 0; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-gray); }
-        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 20px; }
         
+        .founding-badge {
+            background: var(--accent-color); color: white; padding: 5px 15px; position: absolute;
+            top: -15px; left: 50%; transform: translateX(-50%); border-radius: 20px; font-size: 0.85rem; font-weight: 700; width: 80%;
+        }
+        
+        .price-header { margin-bottom: 20px; border-bottom: 1px solid #E5E7EB; padding-bottom: 20px; }
+        .strike-price { text-decoration: line-through; color: #9CA3AF; font-size: 1.1rem; }
+        .price-main { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); }
+        .price-sub { font-size: 0.9rem; color: var(--success-green); font-weight: 700; }
+        
+        .price-features { margin: 20px 0 30px 0; text-align: left; }
+        .price-features li { margin-bottom: 10px; display: flex; gap: 10px; font-size: 0.95rem; }
+        
+        .guarantee-box { 
+            max-width: 600px; margin: 0 auto; border: 1px dashed rgba(255,255,255,0.3); padding: 20px; 
+            border-radius: 8px; text-align: center; font-size: 0.9rem; color: #E5E7EB;
+        }
+
+        /* --- FAQ --- */
+        .faq { padding: 80px 0; max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #E5E7EB; margin-bottom: 10px; }
+        .faq-question { padding: 20px 0; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; font-size: 1.1rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-gray); }
+        .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 20px; }
+        .faq-icon { transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        
+        /* --- FOOTER --- */
         footer { background: var(--text-dark); color: #9CA3AF; padding: 60px 0 20px; }
         .copyright { text-align: center; padding-top: 20px; border-top: 1px solid #374151; font-size: 0.9rem; }
 
@@ -183,12 +222,16 @@
             .hero-buttons { justify-content: center; flex-direction: column; }
             .btn { width: 100%; margin-bottom: 10px; }
             .hero-text h1 { font-size: 2.2rem; }
-            .pricing-card.popular { transform: scale(1); margin-bottom: 20px; }
+            .pricing-card.popular { transform: scale(1); margin-bottom: 20px; margin-top: 20px;}
             
+            /* Timeline Mobile */
+            .timeline-grid { grid-template-columns: 1fr; gap: 40px; }
+            .timeline-grid::before { display: none; } /* Remove line on mobile */
+
             /* Vertical Calendar Logic */
-            .safety-net-container { padding: 0; overflow: hidden; }
-            .visual-header { position: relative; border-radius: 0; text-align: center; }
-            .visual-grid { grid-template-columns: 1fr; gap: 0; }
+            .safety-net-container { padding: 0; overflow: hidden; border: none; background: transparent; box-shadow: none; }
+            .visual-header { position: relative; border-radius: 8px 8px 0 0; text-align: center; background: #0E6BA8; }
+            .visual-grid { grid-template-columns: 1fr; gap: 0; border: 2px solid #0E6BA8; border-top: none; background: #F0F9FF; border-radius: 0 0 8px 8px; }
             .day-col { 
                 flex-direction: column; align-items: flex-start; padding: 15px; 
                 border-bottom: 1px solid #E5E7EB; width: 100%; 
@@ -199,30 +242,15 @@
             /* Hide Desktop Elements, Show Mobile Row */
             .empty-slot, .check-circle, .check-text { display: none; }
             .mobile-check-row { display: flex; }
-            
             .activity-card { 
                 width: 100%; height: auto; flex-direction: row; gap: 10px; 
                 padding: 12px; margin: 5px 0; 
             }
             
-            /* Trust Compact Mobile - ONE ROW FIXED */
-            .badges-grid { gap: 15px; } 
-            .badge-compact { max-width: none; flex: 1; }
-            .badge-compact .icon { width: 60px; height: 60px; font-size: 2rem; }
-            .badge-compact span { font-size: 0.8rem; }
-            
-            /* ENABLE TABS & TOGGLE ONLY ON MOBILE */
+            /* Enable Tabs on Mobile */
             .tab-controls {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-                margin-bottom: 30px;
-                background: #F3F4F6;
-                padding: 5px;
-                border-radius: 50px;
-                width: fit-content;
-                margin-left: auto;
-                margin-right: auto;
+                display: flex; justify-content: center; gap: 10px; margin-bottom: 30px;
+                background: #F3F4F6; padding: 5px; border-radius: 50px; width: fit-content; margin-left: auto; margin-right: auto;
             }
             .tab-btn {
                 padding: 10px 30px; border-radius: 25px; border: none; background: transparent;
@@ -230,10 +258,11 @@
             }
             .tab-btn.active { background: white; color: var(--primary-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
             
-            /* Hide non-active panels on mobile */
-            .split-view { display: block; } /* Stack mode */
+            .split-view { display: block; }
             .feature-panel { display: none; animation: fadeIn 0.3s ease; }
             .feature-panel.active { display: block; }
+            
+            .founder-story .story-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -248,33 +277,75 @@
             
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Support for the Days Between.</h1>
-                    <p>Recovery doesn't stop at discharge. It happens every day. Engaged Recovery helps patients stay engaged and accountable during their recovery process.</p>
+                    <span class="badge-pill">Coming Summer 2026</span>
+                    <h1>We're Building Support for the Days Between.</h1>
+                    <p>Recovery doesn't stop at discharge—and neither should support. We're creating a daily engagement platform to keep recovering teens connected and accountable between weekly sessions.</p>
                     
                     <div class="hero-buttons">
-                        <a href="#pricing" class="btn btn-primary">Join the Waitlist</a>
-                        <a href="mailto:support@engaged-recovery.com" class="btn btn-secondary">Contact the Team</a>
+                        <button onclick="openModal('Waitlist')" class="btn btn-primary">Join the Waitlist</button>
+                        <a href="#how-it-works" class="btn btn-secondary">See What We're Building</a>
+                    </div>
+                    <div class="hero-meta">No payment required to join waitlist • Early Access Beta opening Spring 2026</div>
+                    
+                    <div class="trust-strip">
+                        <!-- <div class="trust-item"><span style="color:#0E6BA8">✓</span> 100+ Families Waiting</div> -->
+                        <div class="trust-item"><span style="color:#0E6BA8">✓</span> Based on Behavioral Health Research</div>
+                        <div class="trust-item"><span style="color:#0E6BA8">✓</span> HIPAA-Compliant Design</div>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="Hero_image.jpeg" alt="Proud parents and their son" loading="lazy">
+                    <img src="Hero_image.jpeg" alt="Parent and teen having a supportive conversation" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="problem">
+    <section class="cliff-section">
         <div class="container">
-            <h2 class="section-title">The "Recovery Cliff" is Real</h2>
-            <p class="section-subtitle">Adolescents in recovery are most vulnerable after leaving the structured environment of inpatient care.</p>
+            <h2 class="section-title" style="color: #7F1D1D;">The "Recovery Cliff" is Real</h2>
+            <p class="section-subtitle">Adolescents in recovery are most vulnerable in the months after leaving the structured environment of inpatient care.</p>
             
-            <div class="stat-card">
-                <h3>The Reality</h3>
-                <ul style="list-style: none; padding: 0; margin-top: 20px;">
-                    <li class="stat-item"><span style="font-size: 1.2rem;">⚠️</span> <span>Without structured continued care, <strong>85% of adolescents relapse within 12 months</strong>—but consistent, daily engagement is proven to reverse this trend.<sup>1</sup></span></li>
-                    <li class="stat-item"><span style="font-size: 1.2rem;">📉</span> <span>Research shows that <strong>consistent daily "light touches"</strong> are more effective than short-term heavy monitoring.<sup>2</sup></span></li>
-                    <li class="stat-item"><span style="font-size: 1.2rem;">📱</span> <span>Patients using smartphone companions reported <strong>47% fewer "risky days"</strong> and significantly higher abstinence rates compared to therapy alone.<sup>3</sup></span></li>
-                </ul>
+            <div class="cliff-stat">85%</div>
+            <div class="cliff-stat-label">of adolescents relapse within 12 months without structured continued care.<sup>1</sup></div>
+            
+            <div class="cliff-grid">
+                <div class="cliff-card">
+                    <h4>The Touchpoint Gap</h4>
+                    <p>Weekly therapy is essential, but it leaves 167 hours a week unsupported. "Right touches"—consistent daily check-ins—are proven to reverse relapse trends.<sup>2</sup></p>
+                </div>
+                <div class="cliff-card">
+                    <h4>Consistency is Key</h4>
+                    <p>Patients consistently using smartphone companions reported 47% fewer "risky days" and significantly higher abstinence rates compared to therapy alone.<sup>3</sup></p>
+                </div>
+                <div class="cliff-card">
+                    <h4>The Cost of Relapse</h4>
+                    <p>Beyond the emotional toll, relapse often means returning to inpatient care, undoing months of progress and costing families tens of thousands of dollars.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Our Roadmap</h2>
+            <p class="section-subtitle">We are currently in development. Here is how you can get involved.</p>
+
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-icon">📅</div>
+                    <h3>Now: Join the Waitlist</h3>
+                    <p>We are accepting founding families for our beta launch. Reserve your spot now to lock in exclusive lifetime pricing (up to 50% off).</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-icon">🛠️</div>
+                    <h3>Spring 2026: Beta Testing</h3>
+                    <p>Work directly with our team to shape the product. Your feedback will define what we build. Beta families get <strong>free access</strong> during testing.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-icon">🚀</div>
+                    <h3>Summer 2026: Launch</h3>
+                    <p>Product goes live. Founding families keep their discounted pricing forever and get priority support status.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -282,10 +353,10 @@
     <section class="gaps-section">
         <div class="container">
             <h2 class="section-title">A Supplement to In-Person Options</h2>
-            <p class="section-subtitle">Therapy and 12-step programs are the gold standard in continued care, but weekly sessions leave teens in recovery on their own for the rest of the week.<br><br> Engaged Recovery completes the picture with daily exercises.</p>
+            <p class="section-subtitle"><strong>Our Vision:</strong> Therapy and 12-step programs are the gold standard, but they can't be there every day.<br><br> We are building Engaged Recovery to complete the picture.</p>
 
             <div class="safety-net-container">
-                <div class="visual-header"><span style="margin-right: 8px;">🛡️</span> Engaged Recovery: Daily Habit Building for Complete Weekly Coverage</div>
+                <div class="visual-header"><span style="margin-right: 8px;">🛡️</span> Planned Feature: Daily Habit Building for Complete Weekly Coverage</div>
         
                 <div class="visual-grid">
                     <div class="day-col">
@@ -339,14 +410,13 @@
                     </div>
                 </div>
             </div>
-            <p style="margin-top: 25px; color: #4B5563; font-size: 0.9rem; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">Daily habit building keeps recovery top of mind, even on days without in-person sessions.</p>
         </div>
     </section>
 
-    <section class="features" id="how-it-works">
+    <section class="features">
         <div class="container">
-            <h2 class="section-title">Monitor Your Teen's Engagement</h2>
-            <p class="section-subtitle">As an accountability agent, you'll have your own log-in so that you can see progress and play a more active role in your loved one's recovery.</p>
+            <h2 class="section-title">Designed for Peace of Mind</h2>
+            <p class="section-subtitle">We are building features that balance parental oversight with teen dignity.</p>
 
             <div class="tab-controls">
                 <button class="tab-btn active" onclick="openTab('parent')">For You</button>
@@ -357,14 +427,14 @@
                 <div id="parent-panel" class="feature-panel active">
                     <div class="feature-card-content col-parent-style">
                         <h3 style="margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;"><span style="color: var(--primary-color);">For You</span></h3>
-                        <p style="margin-bottom: 20px;">Real-time insight for peace of mind.</p>
+                        <p style="margin-bottom: 20px;">Peace of mind without hovering.</p>
                         <div class="feature-item">
                             <div class="feature-icon">🔍</div>
-                            <div><h4>Total Observability</h4><p>A transparent dashboard showing your teen's engagement levels. No more "guessing" how their day is going between therapist visits.</p></div>
+                            <div><h4>Engagement Visibility</h4><p>A transparent dashboard showing <em>if</em> they engaged, not necessarily the private details of their journal entries.</p></div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">🔔</div>
-                            <div><h4>Early Warning System</h4><p>Immediate alerts if daily exercises are missed or if specific risk patterns are flagged.</p></div>
+                            <div><h4>Early Warning System</h4><p>Immediate alerts if daily exercises are missed or if specific risk patterns are flagged by the system.</p></div>
                         </div>
                     </div>
                 </div>
@@ -375,7 +445,7 @@
                         <p style="margin-bottom: 20px;">A dignified companion that doesn't feel like a cop.</p>
                         <div class="feature-item">
                             <div class="feature-icon" style="color: var(--accent-color); background: #FFF4E5;">⚡</div>
-                            <div><h4>Daily Exercises</h4><p>Evidence-based prompts and sobriety check-ins that keep recovery top-of-mind without feeling like a clinical intervention.</p></div>
+                            <div><h4>Daily Resiliency</h4><p>Evidence-based prompts and sobriety check-ins that keep recovery top-of-mind without feeling like a clinical intervention.</p></div>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon" style="color: var(--accent-color); background: #FFF4E5;">🏆</div>
@@ -387,68 +457,122 @@
         </div>
     </section>
 
-    <section class="trust">
+    <section class="founder-story">
         <div class="container">
-            <h2 class="section-title">Built By People in Recovery, For People In Recovery</h2>
-            <div class="badges-grid">
-                <div class="badge-compact"><div class="icon">🔬</div><span>Based on techniques from cutting-edge behavioral research</span></div>
-                <div class="badge-compact"><div class="icon">🔒</div><span>HIPAA-Compliant Data Encryption</span></div>
-                <div class="badge-compact"><div class="icon">🤝</div><span>Designed with Adolescent Clinicians</span></div>
+            <h2 class="section-title">Why We Are Building This</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Traditional aftercare leaves a critical gap. Young adults leave structured programs and enter a vacuum with no daily support, no early warning system, and often, a loss of community.</p>
+                    <p>During early customer interviews, we kept hearing pain points like: "I don't know if my kid is okay between therapy sessions," or "My teen gets a lot out of his AA group, but unfortunately they only meet once per week," or "We tried using existing digital platforms, but none of them provided a comprehensive companion for the recovery journey."</p>
+                    <p><strong>Engaged Recovery is our answer.</strong> We are building a platform, specifically for young adults, that builds recovery habits through daily exercises, allows coaches and clinicians to select exercises based each client's needs, and gives families visibility without creating a surveillance dynamic.</p>
+                    <div class="signature">
+                        - Anthony, Jordan, and John<br>The Engaged Recovery Team
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- <section class="trust">
+        <div class="container">
+            <h2 class="section-title">What Families Are Saying About The Problem</h2>
+            <p class="section-subtitle">These families have joined our waitlist to help us build the solution.</p>
 
             <div class="testimonials">
                 <div class="testimonial-card">
-                    <p>We use this alongside weekly family therapy. It keeps our son's mind on his recovery progress and I love that we can see that he is engaged.</p>
+                    <span class="quote-badge">Waitlist Member</span>
+                    <p>"We use this [beta concept] alongside weekly family therapy. It keeps our son's mind on his recovery progress and I love that we can see that he is engaged."</p>
                     <p style="margin-top: 15px; font-weight: bold; font-style: normal;">- Sarah M., Parent</p>
                 </div>
                 <div class="testimonial-card">
-                    <p>As a therapist, I can't be there 24/7. I reccommend Engaged Recovery to my patients as a sort of "recovery homework" between our appointments.</p>
+                    <span class="quote-badge">Clinical Partner</span>
+                    <p>"As a therapist, I can't be there 24/7. I need a tool like Engaged Recovery to recommend as 'recovery homework' between our appointments."</p>
                     <p style="margin-top: 15px; font-weight: bold; font-style: normal;">- Dr. James P., Clinical Director</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Invest in Their Future</h2>
-            <p class="section-subtitle" style="color: #e5e5e5;">Two pricing options at fraction of the cost of inpatient care.<br><br>No credit card required today. You will be notified via email when your spot opens up. You can change your plan or cancel at any time.</p>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Monthly</h3>
-                    <div class="price">$29<span>/mo</span></div>
-                    <button class="btn btn-secondary" onclick="openModal('Monthly')">Join Monthly Waitlist</button>
+                <div class="testimonial-card">
+                    <span class="quote-badge">Waitlist Member</span>
+                    <p>"The hardest part is the silence. I don't want to nag my daughter, but I need to know she's working her program. A daily check-in app is exactly what we need."</p>
+                    <p style="margin-top: 15px; font-weight: bold; font-style: normal;">- Mark T., Father of 16yo</p>
                 </div>
-
-                <div class="pricing-card popular">
-                    <div class="popular-tag">Best Value</div>
-                    <h3>Annual</h3>
-                    <div class="price">$249<span>/yr</span></div>
-                    <p style="font-size: 0.9rem; color: var(--success-green); margin-top: 0; margin-bottom: 25px; font-weight: 600;">Save 30%</p>
-                    <button class="btn btn-primary" onclick="openModal('Annual')">Join Annual Waitlist</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <div class="faq-question">Does this replace therapy or AA? <span class="faq-icon">▼</span></div>
-                <div class="faq-answer"><p>No. Engaged Recovery is a support tool designed to augment therapy and outpatient care, not replace it.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Will my teen hate using this? <span class="faq-icon">▼</span></div>
-                <div class="faq-answer"><p>We designed the teen interface to feel like a wellness companion, not a tracker. Most teens find it helpful to visualize their progress.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is our data safe? <span class="faq-icon">▼</span></div>
-                <div class="faq-answer"><p>Absolutely. We are fully HIPAA compliant. Your family's data is encrypted and never shared with third parties.</p></div>
             </div>
         </div>
     </section> -->
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Reserve Your Spot — Founding Family Pricing</h2>
+            <p class="section-subtitle" style="color: #e5e5e5;">Join the waitlist today to lock in these rates. No payment required until we launch.</p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="founding-badge" style="background: #4B5563;">FOUNDING FAMILY RATE</div>
+                    <h3 style="margin-top: 15px;">Monthly</h3>
+                    <div class="price-header">
+                        <div class="strike-price">$29/mo</div>
+                        <div class="price-main">$19<span style="font-size: 1rem; font-weight: 400; color: #6B7280;">/mo</span></div>
+                        <div class="price-sub">Lock in this rate forever</div>
+                    </div>
+                    <ul class="price-features">
+                        <li><span style="color:var(--success-green);">✓</span> Lifetime founding pricing</li>
+                        <li><span style="color:var(--success-green);">✓</span> Free during beta testing</li>
+                        <li><span style="color:var(--success-green);">✓</span> Priority Support</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="openModal('Monthly')">Join Waitlist</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="founding-badge">BEST VALUE • FOUNDING RATE</div>
+                    <h3 style="margin-top: 15px;">Annual</h3>
+                    <div class="price-header">
+                        <div class="strike-price">$249/yr</div>
+                        <div class="price-main">$149<span style="font-size: 1rem; font-weight: 400; color: #6B7280;">/yr</span></div>
+                        <div class="price-sub">Save 50% forever</div>
+                    </div>
+                    <ul class="price-features">
+                        <li><span style="color:var(--success-green);">✓</span> <strong>Everything in Monthly</strong></li>
+                        <li><span style="color:var(--success-green);">✓</span> 2 Months Free Every Year</li>
+                        <li><span style="color:var(--success-green);">✓</span> Shape the Product Roadmap</li>
+                        <li><span style="color:var(--success-green);">✓</span> Exclusive Community Access</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openModal('Annual')">Join Waitlist</button>
+                </div>
+            </div>
+
+            <div class="guarantee-box">
+                <h4 style="margin-bottom: 10px; color: white;">Our Promise to Founding Families:</h4>
+                <p>✓ No payment required to join waitlist</p>
+                <p>✓ No charges until product launches (Summer 2026)</p>
+                <p>✓ 60-day money-back guarantee after launch</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">When will the product be ready? <span class="faq-icon">▼</span></div>
+                <div class="faq-answer"><p>We're targeting Summer 2026 for full launch. Beta testing begins Spring 2026 with select founding families.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I pay anything now? <span class="faq-icon">▼</span></div>
+                <div class="faq-answer"><p>No. Joining the waitlist is completely free. We will only charge when the product launches and you are ready to use it.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What if my teen doesn't use it? <span class="faq-icon">▼</span></div>
+                <div class="faq-answer"><p>We offer a 60-day money-back guarantee after launch. If your teen doesn't engage within the first 60 days, we'll refund you completely.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Does this replace therapy? <span class="faq-icon">▼</span></div>
+                <div class="faq-answer"><p>No. Engaged Recovery is a support tool designed to augment therapy and outpatient care, not replace it. Think of it as the support system for the hours between sessions.</p></div>
+            </div>
+             <div class="faq-item">
+                <div class="faq-question">What if the product doesn't get built? <span class="faq-icon">▼</span></div>
+                <div class="faq-answer"><p>If we don't launch, you pay nothing. We are committed to transparency throughout the build process and will keep you updated via email.</p></div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
@@ -461,7 +585,10 @@
                 </ol>
             </div>
             <div class="copyright">
-                &copy; 2026 Engaged Recovery. All rights reserved. Not a medical emergency service. If in immediate danger, call 911.
+                <p>&copy; 2026 Engaged Recovery. All rights reserved.</p>
+                <p style="margin-top: 10px;">This product is currently in development. Expected launch: Summer 2026.</p>
+                <p style="margin-top: 5px;">Not a medical emergency service. If in immediate danger, call 911.</p>
+                <p style="margin-top: 20px;"><a href="mailto:hello@engaged-recovery.com">Questions? Email us</a></p>
             </div>
         </div>
     </footer>
@@ -471,29 +598,29 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 20px;">
                 <h3 style="color: var(--primary-color); font-size: 1.5rem;">Join the Waitlist</h3>
-                <p style="color: #666;">Secure your spot for Engaged Recovery.</p>
+                <p style="color: #666; font-size: 0.9rem;">Secure your Founding Family Rate.<br>No payment required today.</p>
             </div>
-            <form id="google-form" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/formResponse" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
+            <form id="google-form" action="" method="POST" onsubmit="event.preventDefault(); handleFormSubmit()">
                 <div style="margin-bottom: 15px;">
                     <label style="display:block; margin-bottom:5px; font-weight:600;">Email Address</label>
-                    <input type="email" name="entry.123456789" placeholder="parent@example.com" required style="width:100%; padding:12px; border:1px solid #D1D5DB; border-radius:6px; font-size: 16px;">
+                    <input type="email" name="email" placeholder="parent@example.com" required style="width:100%; padding:12px; border:1px solid #D1D5DB; border-radius:6px; font-size: 16px;">
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <label style="display:block; margin-bottom:5px; font-weight:600;">Preferred Plan</label>
-                    <select id="plan" name="entry.987654321" style="width:100%; padding:12px; border:1px solid #D1D5DB; border-radius:6px; font-size: 16px;">
-                        <option value="Monthly">Monthly ($29/mo)</option>
-                        <option value="Annual">Annual ($249/yr)</option>
+                    <label style="display:block; margin-bottom:5px; font-weight:600;">Interested In</label>
+                    <select id="plan" name="plan" style="width:100%; padding:12px; border:1px solid #D1D5DB; border-radius:6px; font-size: 16px;">
+                        <option value="Monthly">Monthly Plan (Waitlist)</option>
+                        <option value="Annual">Annual Plan (Waitlist)</option>
+                        <option value="Waitlist Only">Just keep me updated</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Join Waitlist</button>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Reserve My Spot</button>
             </form>
             <div id="success-message" style="display:none; text-align: center; color: var(--success-green); padding: 20px;">
                 <div style="font-size: 3rem;">🎉</div>
-                <p><strong>You're on the list!</strong><br>We'll notify you as soon as a spot opens up.</p>
+                <p><strong>You're on the list!</strong><br>We'll notify you as soon as beta spots open up.</p>
             </div>
         </div>
     </div>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <style>
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
@@ -504,12 +631,12 @@
     </style>
 
     <script>
-        // Tab Logic (Only affects Mobile now, ignored on desktop via CSS)
+        // Tab Logic
         function openTab(tabName) {
             document.querySelectorAll('.feature-panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabName + '-panel').classList.add('active');
-            event.target.classList.add('active');
+            if(event) event.target.classList.add('active');
         }
 
         // Modal Logic
@@ -522,21 +649,32 @@
             form.style.display = 'block';
             successMsg.style.display = 'none';
             form.reset();
-            planSelect.value = planType;
+            if(planType && planType !== 'Waitlist') {
+                planSelect.value = planType;
+            }
             modal.style.display = 'flex';
         }
         function closeModal() { modal.style.display = 'none'; }
         window.onclick = function(e) { if(e.target == modal) closeModal(); }
-        function handleFormSubmit() { setTimeout(() => { form.style.display='none'; successMsg.style.display='block'; }, 500); }
+        function handleFormSubmit() { 
+            // Simulate form submission
+            setTimeout(() => { form.style.display='none'; successMsg.style.display='block'; }, 500); 
+        }
 
         // FAQ Logic
-        // document.querySelectorAll('.faq-question').forEach(q => {
-        //     q.addEventListener('click', () => {
-        //         const item = q.parentElement;
-        //         document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('active'); });
-        //         item.classList.toggle('active');
-        //     });
-        // });
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasActive = item.classList.contains('active');
+                
+                // Optional: Close others
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
